@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KNNController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,10 @@ use App\Http\Controllers\KNNController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
 
-Route::match(['get', 'post'], '/classify', [KNNController::class, 'classify']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::match(['get', 'post'], '/classify', [KNNController::class, 'classify'])->name('classify');

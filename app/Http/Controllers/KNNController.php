@@ -10,7 +10,7 @@ class KNNController extends Controller
     public function classify(Request $request)
     {
         if ($request->isMethod('get')) {
-            return view('classify');
+            return view('pages.classify');
         }
 
         $k = $request->input('k', 3); // default k = 3
@@ -35,6 +35,8 @@ class KNNController extends Controller
             ];
         }
 
+        $unsortedDistances = $distances;
+
         // Urutkan berdasarkan jarak terdekat
         usort($distances, function ($a, $b) {
             return $a['distance'] <=> $b['distance'];
@@ -56,9 +58,9 @@ class KNNController extends Controller
             'tipe_kendaraan' => $predictedTipeKendaraan
         ]);
 
-        return view('classify', [
+        return view('pages.classify', [
             'predicted_tipe_kendaraan' => $predictedTipeKendaraan,
-            'distances' => $distances,
+            'unsortedDistances' => $unsortedDistances,
             'neighbors' => $neighbors,
             'kecepatan_maks' => $kecepatan_maks,
             'konsumsi_bb' => $konsumsi_bb,
