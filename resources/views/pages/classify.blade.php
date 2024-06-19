@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Classify
+@endsection
+
 @section('content')
     <main id="main" class="main">
 
@@ -112,7 +116,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <h5>Maka Tipe Kendaraan: {{ $predicted_tipe_kendaraan }}</h5>
+                        <h5><b>Maka Tipe Kendaraan : {{ $predicted_tipe_kendaraan }}<b></h5>
 
                     </div>
                 </div>

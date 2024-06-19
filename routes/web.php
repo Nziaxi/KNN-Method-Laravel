@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KNNController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataPointController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,16 @@ use App\Http\Controllers\DashboardController;
 //     return view('welcome');
 // });
 
+// Home Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+// Costumize
+Route::get('/costumize', [DataPointController::class, 'index'])->name('data-point');
+Route::get('/costumize/create', [DataPointController::class, 'create'])->name('data-point');
+Route::post('/costumize/create', [DataPointController::class, 'store']);
+Route::get('/costumize/{id}/edit', [DataPointController::class, 'edit']);
+Route::put('/costumize/{id}/edit', [DataPointController::class, 'update']);
+Route::get('/costumize/{id}/delete', [DataPointController::class, 'destroy']);
+
+// Classify
 Route::match(['get', 'post'], '/classify', [KNNController::class, 'classify'])->name('classify');
