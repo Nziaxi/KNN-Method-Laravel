@@ -13,6 +13,7 @@ class KNNController extends Controller
             return view('pages.classify');
         }
 
+        // Inisialisasi mengambil data dari form
         $k = $request->input('k', 3); // default k = 3
         $kecepatan_maks = $request->input('kecepatan_maks');
         $konsumsi_bb = $request->input('konsumsi_bb');
@@ -23,6 +24,7 @@ class KNNController extends Controller
         // Hitung jarak antara data point baru dengan data point yang ada
         $distances = [];
         foreach ($dataPoints as $dataPoint) {
+            // Hitung menggunakan jarak euclid
             $distance = sqrt(
                 pow($dataPoint->kecepatan_maks - $kecepatan_maks, 2) +
                 pow($dataPoint->konsumsi_bb - $konsumsi_bb, 2)
@@ -35,6 +37,7 @@ class KNNController extends Controller
             ];
         }
 
+        // Inisialisasi data sebelum dilakukan sorting
         $unsortedDistances = $distances;
 
         // Urutkan berdasarkan jarak terdekat

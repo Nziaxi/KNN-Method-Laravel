@@ -25,14 +25,19 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Kecepatan Maks</th>
                                 <th>Konsumsi BB</th>
                                 <th>Tipe Kendaraan</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $increment = ($dataPoints->currentPage() - 1) * $dataPoints->perPage() + 1;
+                            @endphp
                             @foreach ($dataPoints as $dataPoint)
                                 <tr>
+                                    <td>{{ $increment++ }}</td>
                                     <td>{{ $dataPoint->kecepatan_maks }}</td>
                                     <td>{{ $dataPoint->konsumsi_bb }}</td>
                                     <td>{{ $dataPoint->tipe_kendaraan }}</td>
